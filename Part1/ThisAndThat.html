@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+
+  <p>스크립트 전</p>
+
+  <script>
+//   function square(number){
+//       console.log(arguments);
+//       console.log(this);
+
+//       return number * number;
+//   }
+
+//   alert(square(2));
+
+    //###내부함수에서도 전역변수에 바인딩
+    // function foo(){
+    //     console.log("foo's this: ", this);
+    //     function bar() {
+    //         console.log("bar's this: ", this)
+    //     }
+    //     bar();
+    // }
+
+    //###콜백함수에서도 전역변수에 바인딩
+    // var value = 1;
+
+    // var obj = {
+    //     value: 100,
+    //     foo: function() {
+    //         setTimeout(function(){
+    //             console.log("callback's this: ", this);
+    //             console.log("callback's this.value: ", this.value);
+    //         }, 100);
+    //     }
+    // };
+
+    //###that 선언을 통한 this 문제 해결
+    var value = 1;
+
+    var obj = {
+        value: 100,
+        foo: function() {
+            var that = this; //this는 obj
+
+            console.log("foo's this: ", this);
+            console.log("foo's this.value: ", this.value);
+            function bar() {
+                console.log("bar's this: ", this);
+                console.log("bar's this.value: ", this.value);
+
+                console.log("bar's that: ", that);
+                console.log("bar's that.value: ", that.value);
+            }
+            bar();
+        }
+    }
+
+    alert(obj.foo());
+  </script> 
+
+<p>스크립트 후</p>
+
+</body>
+
+</html>
